@@ -18,10 +18,10 @@ class ProjectSeeder extends Seeder
         for ($i = 0; $i <= 20; $i++) {
             $project = new Project();
             $project->title = $faker->text(20);
-            // $project->slug = str_replace(' ', '-', strtolower($project->title));
+            $project->slug = str_replace(' ', '-', strtolower($project->title));
             $project->slug = Str::slug($project->title, '-');
             $project->description = $faker->paragraphs(2, true);
-            $project->image = $faker->imageUrl(250, 250);
+            $project->image = $faker->image(null, 360, 360, 'animals', true);
             $project->save();
         }
     }
