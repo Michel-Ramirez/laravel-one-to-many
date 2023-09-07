@@ -40,7 +40,6 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
-        // dd($data);
         $request->validate([
 
             'title' => ['required', 'string', Rule::unique('projects')],
@@ -115,7 +114,7 @@ class ProjectController extends Controller
         ]);
 
         $data = $request->all();
-        $project->update();
+        $project->update($data);
 
         return to_route('admin.projects.show', $project);
     }

@@ -30,10 +30,15 @@
                     <label for="type" class="form-label">Tipo di progetto</label>
                     <select class="form-select form-select" id="type" name="type_id">
                         <option value="">Nessuno</option>
+
+
                         @foreach ($types as $type)
-                            <option @if (old('type_id', $project->type->id) == $type->id) selected @endif value="{{ $type->id }}">
+                            {{-- ? = $project->type è isset? true allora dammi il id altrimenti settalo a null (in termine tecnico "null safe operator") --}}
+                            <option @if (old('type_id', $project->type?->id) == $type->id) selected @endif value="{{ $type->id }}">
                                 {{ $type->label }}</option>
                         @endforeach
+
+
                     </select>
                 </div>
             </div>

@@ -25,6 +25,10 @@
                          <a class="nav-link @if (request()->routeIs('admin.projects.index')) active @endif"
                              href="{{ route('admin.projects.index') }}">Progetti</a>
                      </li>
+                     <li class="nav-item">
+                         <a class="nav-link @if (request()->routeIs('admin.types.index')) active @endif"
+                             href="{{ route('admin.types.index') }}">Tipi</a>
+                     </li>
                  @endauth
              </ul>
 
