@@ -31,4 +31,9 @@
         <p>Progetto creato il: {{ $project->created_at }}</p>
         <p class="ms-3">Ultima modifica: {{ $project->updated_at }}</p>
     </div>
+    <div>
+        <strong>Tipo di progetto:</strong>
+        <span class="badge" style="background-color: {{ $project->type->color }}">
+            {{ $project->type->label }}</span>
+    </div>
 @endsection

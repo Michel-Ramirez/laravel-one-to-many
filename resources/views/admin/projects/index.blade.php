@@ -18,6 +18,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Tipo di progetto</th>
                 <th scope="col">Creato il</th>
                 <th scope="col">Ultima modica</th>
                 <th></th>
@@ -29,6 +30,10 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
+                    <td>
+                        <span class="badge fs-6"
+                            style="background-color:{{ $project->type->color }} ">{{ $project->type->label }}</span>
+                    </td>
                     <td>{{ $project->created_at }}</td>
                     <td>{{ $project->updated_at }}</td>
                     <th>

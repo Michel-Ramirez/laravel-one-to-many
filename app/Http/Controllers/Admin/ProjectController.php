@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $types = Type::all();
         $projects = Project::orderBy('updated_at', 'DESC')->get();
-        return view('admin.projects.index', compact('projects'));
+        return view('admin.projects.index', compact('projects', 'types'));
     }
 
     /**
@@ -72,6 +74,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+
+        $project->load('type');
+
         return view('admin.projects.show', compact('project'));
     }
 

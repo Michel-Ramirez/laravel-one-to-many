@@ -32,16 +32,6 @@
                     </div>
                 </div>
             @endif
-
-            {{-- LINGUAGGIO DI SCRITTURA DEL PROGETTO --}}
-
-            {{-- <div class="col-4">
-                            <div class="mb-3">
-                                <label for="slug" class="form-label">Linguaggio</label>
-                                <input type="text" class="form-control" id="slug" value="{{ old('slug') }}">
-                            </div>
-                        </div> --}}
-
         </div>
         <div class="row">
             <div class="col-7">
