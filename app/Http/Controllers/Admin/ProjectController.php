@@ -27,9 +27,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $types = Type::select('id', 'label')->get();
 
         $project = new Project;
-        return view('admin.projects.create', compact('project'));
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -45,12 +46,14 @@ class ProjectController extends Controller
             'title' => ['required', 'string', Rule::unique('projects')],
             'description' => 'required|string',
             'image' => 'nullable|image',
+            'type_id' => 'nullable|exists:types,id'
 
         ], [
             'title.required' => 'Questo campo è obbligatorio',
             'title.unique' => 'Questo progetto esiste già',
             'description.required' => 'Aggiungi una descrizione del progetto',
-            'image.image' => 'Il file caricato non è valido'
+            'image.image' => 'Il file caricato non è valido',
+            'type_id.exists' => 'Il tipo indicato non esiste'
         ]);
 
         $project = new Project();
@@ -85,7 +88,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::select('id', 'label')->get();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -98,12 +102,16 @@ class ProjectController extends Controller
             'title' => ['required', 'string', Rule::unique('projects')->ignore($project->id)],
             'description' => 'required|string',
             'image' => 'nullable|image',
+            'type_id' => 'nullable|exists:types,id'
+
 
         ], [
             'title.required' => 'Questo campo è obbligatorio',
             'title.unique' => 'Questo progetto esiste già',
             'description.required' => 'Aggiungi una descrizione del progetto',
-            'image.image' => 'File caricato non valido'
+            'image.image' => 'File caricato non valido',
+            'type_id.exists' => 'Il tipo indicato non esiste'
+
         ]);
 
         $data = $request->all();
@@ -117,7 +125,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->delete();
+        $project->forceDelete();
 
         return to_route('admin.projects.index');
     }

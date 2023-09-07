@@ -33,7 +33,11 @@
     </div>
     <div>
         <strong>Tipo di progetto:</strong>
-        <span class="badge" style="background-color: {{ $project->type->color }}">
-            {{ $project->type->label }}</span>
+        @if ($project->type)
+            <span class="badge fs-6" style="background-color: {{ $project->type->color }}">
+                {{ $project->type->label }}</span>
+        @else
+            <small>Non assegnato</small>
+        @endif
     </div>
 @endsection
